@@ -3,29 +3,29 @@
  * Implements hook_menu().
  */
 function axelerant_menu() {
-	$items['page_json'] = array(
-		'access callback' => true,
-		'page callback' => 'axelerant_page_json_output',
+  $items['page_json'] = array(
+    'access callback' => true,
+    'page callback' => 'axelerant_page_json_output',
   );
-	return $items;
+  return $items;
 }
 /**
  * Page callback to retrieve nodes of type page.
  *
  *  @param string $axelerant_site_api_key
- *		Global siteapikey defaults to FALSE.
- *	@param int $nid
- *		Nid of a node object defaults to FALSE.
- *	@return $output 
- *		JSON output of the node.			
+ *    Global siteapikey defaults to FALSE.
+ *  @param int $nid
+ *    Nid of a node object defaults to FALSE.
+ *  @return $output 
+ *    JSON output of the node.			
  */
 function axelerant_page_json_output($axelerant_site_api_key = FALSE, $nid = FALSE) {
-	$output = 'access denied';
-	if ($axelerant_site_api_key & $nid) {
-		$node = node_load($nid);
-		if (isset($node) && $node->type === 'page' && $axelerant_site_api_key === variable_get('axelerant_siteapikey')) {
-			$output = drupal_json_output($node);
-		}
+  $output = 'access denied';
+  if ($axelerant_site_api_key & $nid) {
+    $node = node_load($nid);
+    if (isset($node) && $node->type === 'page' && $axelerant_site_api_key === variable_get('axelerant_siteapikey')) {
+      $output = drupal_json_output($node);
+    }
   }	 
 	return $output;
 }
@@ -33,16 +33,16 @@ function axelerant_page_json_output($axelerant_site_api_key = FALSE, $nid = FALS
  * Implements hook_form_id_alter().
  */
 function axelerant_form_system_site_information_settings_alter(&$form, &$form_state, $form_id) {
-	$form['site_information']['axelerant_siteapikey'] = array(
-		'#type' => 'textfield',
-		'#title' => t('Site API Key'),
-		'#default_value' => variable_get('axelerant_siteapikey','No API Key yet'),
-		'#description' => t('Please enter a valid Site API Key in order to get nodes of the type page as JSON'),
-	);
-	$form['#validate'][] = 'axelerant_validate_siteapikey';
-	$form['#submit'][] = 'axelerant_save_siteapikey';
+  $form['site_information']['axelerant_siteapikey'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Site API Key'),
+    '#default_value' => variable_get('axelerant_siteapikey','No API Key yet'),
+    '#description' => t('Please enter a valid Site API Key in order to get nodes of the type page as JSON'),
+  );
+  $form['#validate'][] = 'axelerant_validate_siteapikey';
+  $form['#submit'][] = 'axelerant_save_siteapikey';
   if ($form['site_information']['axelerant_siteapikey']['#default_value'] != 'No API Key yet') {
-		$form['actions']['submit']['#value'] = t('Update Configuration');
+    $form['actions']['submit']['#value'] = t('Update Configuration');
   }
 }
 /**
@@ -62,3 +62,4 @@ function axelerant_save_siteapikey($form, &$form_state) {
 	variable_set('axelerant_siteapikey',$form_state['values']['axelerant_siteapikey']);
 	drupal_set_message(t('The Site API Key has been successfully saved to @value.', array('@value' => $form_state['values']['axelerant_siteapikey']))); 
 }
+
