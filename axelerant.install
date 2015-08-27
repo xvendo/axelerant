@@ -1,0 +1,13 @@
+<?php
+/**
+ * Implements hook_install().
+ */
+function axelerant_install() {
+	variable_set('axelerant_site_api_key');
+}
+/**
+ * Implements hook_uninstall().
+ */
+function axelerant_uninstall() {
+	variable_del('axelerant_site_api_key');
+}

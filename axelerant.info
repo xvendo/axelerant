@@ -1,0 +1,4 @@
+name = Axelerant
+description = Custom Axelerant Module.
+core = 7.x
+package = Axelerant
