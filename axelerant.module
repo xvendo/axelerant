@@ -50,8 +50,8 @@ function axelerant_form_system_site_information_settings_alter(&$form, &$form_st
  * system_site_information_settings form.
  */
 function axelerant_validate_siteapikey($form, &$form_state) {
-	if(empty($form_state['values']['axelerant_siteapikey'])) {
-		form_set_error('axelerant_siteapikey',t('The Site API Key must not be empty!'));
+  if(empty($form_state['values']['axelerant_siteapikey'])) {
+    form_set_error('axelerant_siteapikey',t('The Site API Key must not be empty!'));
   }
 }
 /**
@@ -59,7 +59,7 @@ function axelerant_validate_siteapikey($form, &$form_state) {
  * system_site_information_settings form.
  */
 function axelerant_save_siteapikey($form, &$form_state) {
-	variable_set('axelerant_siteapikey',$form_state['values']['axelerant_siteapikey']);
-	drupal_set_message(t('The Site API Key has been successfully saved to @value.', array('@value' => $form_state['values']['axelerant_siteapikey']))); 
+  variable_set('axelerant_siteapikey',$form_state['values']['axelerant_siteapikey']);
+  drupal_set_message(t('The Site API Key has been successfully saved to @value.', array('@value' => $form_state['values']['axelerant_siteapikey']))); 
 }
 
