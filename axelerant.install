@@ -4,12 +4,12 @@
  */
 function axelerant_install() {
   // Provide global variable.
-	variable_set('axelerant_site_api_key');
+  variable_set('axelerant_site_api_key');
 }
 /**
  * Implements hook_uninstall().
  */
 function axelerant_uninstall() {
   // Delete global variable.
-	variable_del('axelerant_site_api_key');
+  variable_del('axelerant_site_api_key');
 }
